@@ -1,16 +1,16 @@
 {% extends 'movie/layouts/base.html' %}
 
-{% block stylesheet %}
-<style>
-#movie-list-page {
-	margin: 2% 20%;
-}
-</style>
-{% endblock %}
+{% load static %}
 
 {% block content %}
 <div id="movie-list-page" class="container">
-	<table>
+	<div>
+		<h1>Movie Bucket</h1>
+
+		<a href="{% url 'movie:add' %}" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus"></span> Add
+		</a>
+	<table class="table-striped">
 		<thead>
 			<tr>
 				<th>Title</th>
@@ -29,27 +29,29 @@
 					{{ movie.plot }}
 				</td>
 				<td>
-					<a href="{% url 'movie:update' movie.id %}">Edit</a>
+					<a href="{% url 'movie:update' movie.id %}" class="btn btn-default">
+						<span class="glyphicon glyphicon-pencil"></span> Edit
+					</a>
 				</td>
 				<td>
-					Delete
+					<a href="#" class="btn btn-danger" onclick="confirm_delete('{{ movie.title }}')">
+						<span class="glyphicon glyphicon-trash"></span> Delete
+					</a>
 				</td>
 			</tr>
 			{% empty %}
+			
 			<tr>
 				<td>There are no movies stored in the database.</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{% url 'movie:add' %}">Add</a>
-
 </div>
+
+{% include 'movie/modals/confirm-delete-modal.html' %}
 {% endblock %}
 
-{% block script %}
-<script type="text/javascript">
-		
-</script>
+{% block scripts %}
+<script type="text/javascript" src="{% static 'movie/js/movie.js' %}"></script>
 {% endblock %}
