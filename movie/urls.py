@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
+from movie.views import ListPage
 
 app_name = 'movie'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', ListPage.as_view(), name='list'),
 ]
