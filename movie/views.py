@@ -1,30 +1,30 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.views import View
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
-from .models import *
+from .models import Movie
 
-from .classes.movie import MovieClass as m_c
-from .classes.movie_detail import MovieDetailClass as md_c
-
-class ListPage(View):
-	TEMPLATE_NAME = 'movie/list.html'
-
-	def get(self, request, *args, **kwargs):
-		template_vars = {
-			'movies': m_c.get_active_movies()
-		}
-
-		return render(self.request, self.TEMPLATE_NAME, template_vars)
+class MovieList(ListView):
+	model = Movie
 
 
-class DetailPage(View):
-	TEMPLATE_NAME = 'movie/detail.html'
+class MovieDetail(DetailView):
+	model = Movie
 
-	def get(self, request, *args, **kwargs):
-		template_vars = {
-			'movie_detail': md_c.get_movie_detail_by_movie_id(self.kwargs['movie_id'])
-		}
 
-		return render(self.request, self.TEMPLATE_NAME, template_vars)
+class MovieAdd(CreateView):
+	model = Movie
+	fields = ['title', 'plot']
+	success_url = reverse_lazy('movie_list')
 
+
+class MovieUpdate(UpdateView):
+	model = Movie
+	fields = ['title', 'plot']
+	success_url = reverse_lazy('movie_list')
+
+
+class MovieDelete(DeleteView):
+	model = MovieDetail
+	success_url = reverse_lazy('movie_list')

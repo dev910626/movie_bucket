@@ -11,14 +11,12 @@
 
 {% block content %}
 <div id="movie-detail-page" class="container">
-	<h1>{{ movie_detail.movie.title }}</h1>
+	<h1>{{ object.title }}</h1>
 
-	{% if movie_detail %}
-	<p>{{ movie_detail.plot }}</p>
-	{% else %}
-	<p>There are no summary available for this movie</p>
-	{% endif %}
+	<p>
+		{{ object.plot }}
+	</p>
 
-	Likes: {{ movie_detail.likes }}
+	Likes: {{ object.likes }}
 </div>
 {% endblock %}
