@@ -10,6 +10,12 @@ class Movie(models.Model):
 	date_created = models.DateTimeField(default=datetime.now())
 	date_updated = models.DateTimeField(default=datetime.now())
 	date_deleted = models.DateTimeField(null=True, blank=True)
+
+	def __str__(self):
+		return self.title
+
+	def get_absolute_url(self):
+		return reverse('movie_update', kwargs={'pk': self.pk})
 	
 
 class MovieEditHistory(models.Model):
