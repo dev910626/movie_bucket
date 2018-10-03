@@ -1,0 +1,38 @@
+{% extends 'movie/layouts/base.html' %}
+
+{% block stylesheet %}
+<style>
+#movie-list-page {
+	margin: 2% 20%;
+}
+
+.movie-header {
+	font-size: xx-large
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="movie-list-page" class="container">
+	<table class="table-striped">
+		<thead>
+			<tr>
+				<th class="movie-header">Movie</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for movie in movies %}
+			<tr>
+				<td><a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a></td>
+			</tr>
+
+			{% empty %}
+			<tr>
+				<td><strong>There are no movies found in the record.</strong></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
