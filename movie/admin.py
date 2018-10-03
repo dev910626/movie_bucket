@@ -3,5 +3,4 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Movie)
-admin.site.register(MovieDetail)
 admin.site.register(MovieEditHistory)

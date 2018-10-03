@@ -7,3 +7,4 @@ class MovieClass:
 	@staticmethod
 	def get_active_movies():
 		return Movie.objects.filter(is_active=True).order_by('title')
+		
