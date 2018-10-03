@@ -1,0 +1,24 @@
+{% extends 'movie/layouts/base.html' %}
+
+{% block stylesheet %}
+<style>
+#movie-detail-page {
+	margin: 2% 20%;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="movie-detail-page" class="container">
+	<h1>{{ movie_detail.movie.title }}</h1>
+
+	{% if movie_detail %}
+	<p>{{ movie_detail.plot }}</p>
+	{% else %}
+	<p>There are no summary available for this movie</p>
+	{% endif %}
+
+	Likes: {{ movie_detail.likes }}
+</div>
+{% endblock %}
