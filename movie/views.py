@@ -13,7 +13,7 @@ class MovieDetail(DetailView):
 	model = Movie
 
 
-class MovieCreate(CreateView):
+class MovieAdd(CreateView):
 	model = Movie
 	fields = ['title', 'plot']
 	success_url = reverse_lazy('movie_list')

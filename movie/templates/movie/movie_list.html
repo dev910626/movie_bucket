@@ -5,34 +5,40 @@
 #movie-list-page {
 	margin: 2% 20%;
 }
-
-.movie-header {
-	font-size: xx-large
-}
-
 </style>
 {% endblock %}
 
 {% block content %}
 <div id="movie-list-page" class="container">
-	<table class="table-striped">
+	<table>
 		<thead>
 			<tr>
-				<th class="movie-header">Movie</th>
+				<th>Title</th>
 			</tr>
 		</thead>
-		<tbody>
-			{% for movie in movies %}
-			<tr>
-				<td><a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a></td>
-			</tr>
 
+		<tbody>
+			{% for movie in object_list %}
+			<tr>
+				<td>
+					<a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a>
+				</td>
+			</tr>
 			{% empty %}
 			<tr>
-				<td><strong>There are no movies found in the record.</strong></td>
+				<td>There are no movies stored in the database.</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
+
+	<a href="{% url 'movie:add' %}">Add</a>
+
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+		
+</script>
 {% endblock %}
