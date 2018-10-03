@@ -10,7 +10,7 @@ class Movie(models.Model):
 	date_deleted = models.DateTimeField(null=True, blank=True)
 
 
-class MovieDetails(models.Model):
+class MovieDetail(models.Model):
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 	plot = models.TextField()
 	likes = models.PositiveIntegerField(default=0)
