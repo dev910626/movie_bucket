@@ -23,7 +23,9 @@ class MovieAdd(CreateView):
 class MovieUpdate(UpdateView):
 	model = Movie
 	fields = ['title', 'plot']
-	success_url = reverse_lazy('list')
+
+	def get_success_url(self):
+		return reverse('movie:detail', kwargs={'pk': self.object.id})
 
 
 class MovieDelete(DeleteView):
