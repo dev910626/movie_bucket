@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 
 from .models import Movie
 
@@ -16,15 +16,16 @@ class MovieDetail(DetailView):
 class MovieAdd(CreateView):
 	model = Movie
 	fields = ['title', 'plot']
-	success_url = reverse_lazy('movie_list')
-
+	
+	def get_success_url(self):
+		return reverse('movie:detail', kwargs={'pk': self.object.id})
 
 class MovieUpdate(UpdateView):
 	model = Movie
 	fields = ['title', 'plot']
-	success_url = reverse_lazy('movie_list')
+	success_url = reverse_lazy('list')
 
 
 class MovieDelete(DeleteView):
-	model = MovieDetail
-	success_url = reverse_lazy('movie_list')
+	model = Movie
+	success_url = reverse_lazy('list')
