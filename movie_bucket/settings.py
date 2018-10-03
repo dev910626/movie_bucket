@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'movie.urls'
+ROOT_URLCONF = 'movie_bucket.urls'
 
 TEMPLATES = [
     {
