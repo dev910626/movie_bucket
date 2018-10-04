@@ -121,3 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SET_COOKIE_AGE = 2419200
