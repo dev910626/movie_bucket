@@ -1,17 +1,7 @@
 {% extends 'movie/layouts/base.html' %}
 
-{% block stylesheet %}
-<style>
-#movie-detail-page {
-	margin: 2% 20%;
-}
-
-</style>
-{% endblock %}
-
 {% block content %}
-<div id="movie-detail-page" class="container">
-
+<div class="container">
 	{% if messages %}
 	    {% for message in messages %}
 	    <div class="panel panel-success">

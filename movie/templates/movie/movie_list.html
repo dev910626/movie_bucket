@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<div id="movie-list-page" class="container">
+<div class="container">
 	<div>
 		<h1>Movie Bucket</h1>
 
@@ -37,11 +37,10 @@
 					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirm-delete-modal-{{ movie.id }}">Delete</button>
 				</td>
 			</tr>
-			
+
 			{% include 'movie/modals/confirm-delete-modal.html' %}
 
 			{% empty %}
-			
 			<tr>
 				<td>There are no movies stored in the database.</td>
 			</tr>
@@ -50,8 +49,4 @@
 	</table>
 </div>
 
-{% endblock %}
-
-{% block scripts %}
-<script type="text/javascript" src="{% static 'movie/js/movie.js' %}"></script>
 {% endblock %}

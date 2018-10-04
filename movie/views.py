@@ -21,7 +21,7 @@ class MovieAdd(CreateView):
 	
 	def get_success_url(self):
 		messages.success(self.request, self.object.title + ' successfully created!')
-		
+
 		return reverse('movie:detail', kwargs={'pk': self.object.id})
 
 
@@ -30,6 +30,8 @@ class MovieUpdate(UpdateView):
 	fields = ['title', 'plot']
 
 	def get_success_url(self):
+		messages.success(self.request, self.object.title + ' successfully edited!')
+		
 		return reverse('movie:detail', kwargs={'pk': self.object.id})
 
 
