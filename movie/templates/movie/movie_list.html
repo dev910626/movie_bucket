@@ -34,11 +34,12 @@
 					</a>
 				</td>
 				<td>
-					<a href="#" class="btn btn-danger" onclick="confirm_delete('{{ movie.title }}')">
-						<span class="glyphicon glyphicon-trash"></span> Delete
-					</a>
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirm-delete-modal-{{ movie.id }}">Delete</button>
 				</td>
 			</tr>
+			
+			{% include 'movie/modals/confirm-delete-modal.html' %}
+
 			{% empty %}
 			
 			<tr>
@@ -49,7 +50,6 @@
 	</table>
 </div>
 
-{% include 'movie/modals/confirm-delete-modal.html' %}
 {% endblock %}
 
 {% block scripts %}
