@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
+from django.contrib import messages
 
 from .models import Movie
 
@@ -19,6 +20,8 @@ class MovieAdd(CreateView):
 	fields = ['title', 'plot']
 	
 	def get_success_url(self):
+		messages.success(self.request, self.object.title + ' successfully created!')
+		
 		return reverse('movie:detail', kwargs={'pk': self.object.id})
 
 

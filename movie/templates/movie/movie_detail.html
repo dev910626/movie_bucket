@@ -11,6 +11,15 @@
 
 {% block content %}
 <div id="movie-detail-page" class="container">
+
+	{% if messages %}
+	    {% for message in messages %}
+	    <div class="panel panel-success">
+	        <div class="panel-heading">{{ message }}</div>
+	    </div>
+	    {% endfor %}
+	{% endif %}
+
 	<h1>{{ object.title }}</h1>
 
 	<p>
