@@ -12,13 +12,13 @@ def update_session(ses):
 
 def session_decorator(view_function):
 	def wrapper(request, *args, **kwargs):
-		if 'last_visited' not in request.session: #  session does not exist
+		if 'last_visited' not in request.session.keys(): #  session does not exist
 			ses = SessionStore()
 			update_session(ses)
 
 			request.session['last_visited'] = ses.session_key
 
-			request.session['message'] = 'Welcome to our Movie Bucket!'
+			request.session['message'] = 'Welcome to Movie Bucket!'
 
 		else:
 			existing_ses = SessionStore(session_key=request.session['last_visited'])
