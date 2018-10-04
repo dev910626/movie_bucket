@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'crispy_forms',
     'movie',
 ]
 
@@ -124,3 +125,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SET_COOKIE_AGE = 2419200
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
