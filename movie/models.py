@@ -16,12 +16,3 @@ class Movie(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('movie_update', kwargs={'pk': self.pk})
-	
-
-class MovieEditHistory(models.Model):
-	editor = models.CharField(max_length=64)
-	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-
-	date_created = models.DateTimeField(default=datetime.now())
-	date_updated = models.DateTimeField(default=datetime.now())
-	date_deleted = models.DateTimeField(null=True, blank=True)
