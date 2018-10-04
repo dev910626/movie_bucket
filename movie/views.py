@@ -1,14 +1,15 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib import messages
+from django.views import View
 
 from .models import Movie
 
 class MovieList(ListView):
 	model = Movie
-	queryset = Movie.objects.filter(is_active=True)
+	queryset = Movie.objects.filter(is_active=True).order_by('title')
 
 
 class MovieDetail(DetailView):
@@ -47,3 +48,12 @@ class MovieDelete(DeleteView):
 		movie.save()
 
 		return HttpResponseRedirect('/')
+
+
+class AddLike(View):
+	def post(self, request, *args, **kwargs):
+		movie = Movie.objects.get(pk=self.kwargs['pk'])
+		movie.likes += 1
+		movie.save()
+
+		return JsonResponse({'likes' : movie.likes}, content_type = 'text/plain; charset=UTF-8', safe = False)
