@@ -1,5 +1,11 @@
 {% extends 'movie/layouts/base.html' %}
 
+{% load static %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'movie/js/movie.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
 	{% if messages %}
@@ -10,12 +16,24 @@
 	    {% endfor %}
 	{% endif %}
 
-	<h1>{{ object.title }}</h1>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div>
+				<h2>{{ object.title }}</h2>
+				
+				<button type="button" class="btn btn-sm btn-primary add-like" id="{{ object.id }}" >
+					<span class="glyphicon glyphicon-thumbs-up" ></span>
+					Likes: <span id="like-{{ object.id }}">{{ object.likes }}</span>
+				</button>
+			</div>
+		</div>
 
-	<p>
-		{{ object.plot }}
-	</p>
+		<div class="panel-body">
+			{{ object.plot }}
+		</div>
 
-	Likes: {{ object.likes }}
+	</div>
+
+	
 </div>
 {% endblock %}
