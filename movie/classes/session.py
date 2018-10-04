@@ -22,11 +22,11 @@ def session_decorator(view_function):
 
 		else:
 			existing_ses = SessionStore(session_key=request.session['last_visited'])
-
-			update_session(existing_ses)
 			
 			request.session['message']	= 'Welcome back! Your last visit was from ' + existing_ses['last_visited']
 
+			update_session(existing_ses)
+			
 		return view_function(request, *args, **kwargs)
 
 	return wrapper
