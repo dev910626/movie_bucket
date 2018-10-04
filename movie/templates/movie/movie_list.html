@@ -1,0 +1,75 @@
+{% extends 'movie/layouts/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'movie/js/movie.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div style="display: flex;">
+		<div style="width: 80%; align-self: center;">
+			<h1>Movie List</h1>
+		</div>
+		<div style="width: 20%; align-self: center;">
+			<a href="{% url 'movie:add' %}" class="btn btn-primary pull-right">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</a>
+		</div>
+	</div>
+
+	<table class="table table-bordered text-center">
+		<thead>
+			<tr>
+				<th colspan="2" class='text-center'>Title</th>
+				<th class='text-center hidden-sm hidden-xs'>Plot</th>
+				<th colspan="3" class='text-center'>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for movie in object_list %}
+			<tr>
+				<td>
+					<a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a>
+				</td>
+				<td>
+					<button type="button" class="btn btn-sm btn-primary add-like" id="{{ movie.id }}" style="width:100%">
+						<span class="glyphicon glyphicon-thumbs-up" ></span>
+						Likes: <span id="like-{{ movie.id }}">{{ movie.likes }}</span>
+					</button>
+				</td>
+				<td class="hidden-sm hidden-xs">
+					{{ movie.plot|truncatechars:32 }}
+				</td>
+				<td>
+					<a href="{% url 'movie:detail' movie.id %}" class="btn btn-info">
+						<span class="glyphicon glyphicon-play-circle"></span> View
+					</a>
+				</td>
+				<td>
+					<a href="{% url 'movie:update' movie.id %}" class="btn btn-warning">
+						<span class="glyphicon glyphicon-pencil"></span> Edit
+					</a>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete-modal-{{ movie.id }}">
+						<span class="glyphicon glyphicon-trash"></span> Delete
+					</button>
+				</td>
+			</tr>
+
+			{% include 'movie/modals/confirm-delete-modal.html' %}
+
+			{% empty %}
+			<tr>
+				<td>There are no movies stored in the database.</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
+
